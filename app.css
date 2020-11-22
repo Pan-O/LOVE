@@ -298,3 +298,59 @@ html {
 		box-shadow: 0 0 20px #d5093c;
 	}
 }
+.message {
+	background-color: #fff;
+	width: 100px;
+	height: 45px;
+	line-height: 45px;
+	font-size: 16px;
+	text-align: center;
+	border-radius: 10px;
+	box-shadow: 1px 4px 18px 1px rgba(0,0,0,.1);
+	margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    margin-bottom: 0;
+	padding: 0 5px;
+	font-weight: 300;
+	cursor: pointer;
+}
+
+
+
+#message_content { 
+	display: none;
+	box-shadow: 5px 10px 24px 5px rgba(0,0,0,.1);
+
+	border-radius: 14px;
+	position: absolute; 
+	top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	width: 78%; 
+	height: 68%; 
+	padding: 20px; 
+	background-color: white; 
+	z-index:9999; 
+	overflow: auto; 
+} 
+
+@media screen and (max-device-width: 650px) {
+	#message_content { 
+		padding: 20px 28px 20px 28px;
+	}
+
+}
+#message_black {
+    display: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 8888;
+    -moz-opacity: 0.8;
+    opacity: .80;
+    filter: alpha(opacity=80);
+}

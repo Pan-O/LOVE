@@ -80,10 +80,6 @@ $.extend({
 		}
 	}
 });
-//祝福按钮
-$('body').on('click', '.blessing', function() {
-	$.message('Thanks,Wish your Mr.Right/Miss Right will appear soon.');
-});
 //点击爱心效果
 $("html,body").click(function(event) {
 	event = event || window.event;
@@ -104,3 +100,22 @@ $("html,body").click(function(event) {
 		$(this).remove();
 	})
 })
+//Valine评论
+new Valine({
+	el: '#vcomments',
+	appId: 'Your appId',//填写自己申请的id
+    appKey: 'Your appKey'//填写自己申请的key
+})
+//评论窗口
+$('body').on('click','.message',
+function(){
+    $('#message_black').fadeIn(400);
+	$('#message_content').fadeIn(400);
+	
+});
+$('body').on('click','#message_black',
+function(){
+    $('#message_black').fadeOut(400);
+	$('#message_content').fadeOut(400);
+	
+});

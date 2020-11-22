@@ -20,6 +20,16 @@ function female()
     $qqimg = 'https://q1.qlogo.cn/g?b=qq&k=' . $k . '&s=100';
     echo $qqimg;
 }
+//随机感谢语
+function txt()
+{
+    $filename = 'love.txt';        
+    $data = file_get_contents($filename);
+    $data = explode(PHP_EOL, $data);
+    $result = $data[array_rand($data)];
+    $result = str_replace(array("\r","\n","\r\n"), '', $result);
+    echo $result; 
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,6 +44,7 @@ function female()
     />
     <meta name="Description" content="爱情小屋" />
     <link rel="stylesheet" href="app.css" type="text/css" />
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
   </head>
   <body>
     <div class="male Fade_In">
@@ -46,6 +57,7 @@ function female()
         <p id="love_clock"></p>
       </div>
       <div class="blessing Fade_In" id="blessing">祝福:D</div>
+      <div class="message Fade_In" id="message">留言</div>
     </div>
 
     <div class="female Fade_In">
@@ -70,8 +82,21 @@ function female()
         </div>
       </div>
     </div>
+  
+    <div id="message_content">
+      <div id="vcomments"></div>
+        </div> 
+        <div id="message_black"></div>
 
     <script src="jquery.min.js"></script>
     <script src="app.js"></script>
+  
+    <script>
+    //祝福按钮
+     $('body').on('click', '.blessing', function() {
+	    $.message("<?php txt(); ?>");
+     });
+    </script>
+
   </body>
 </html>

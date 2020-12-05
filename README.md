@@ -3,7 +3,7 @@
 
 大部分都是网上的代码抄抄改改（笑
 
-[预览](https://panjianhao.top/project/love/)
+[预览](https://chenyuhan.panjianhao.top)
 
 ## 特色
 * 响应式布局

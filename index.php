@@ -1,102 +1,82 @@
 <?php
-//获取QQ头像
-function male()
-{
-    $qq = '10001';//男QQ
-    $geturl = 'http://ptlogin2.qq.com/getface?&imgtype=1&uin=' . $qq;
-    $qquser = file_get_contents($geturl);
-    preg_match('/&k=.*&s=/', $qquser, $matches);
-    $k = $matches[0];
-    $qqimg = 'https://q1.qlogo.cn/g?b=qq&k=' . $k . '&s=100';
-    echo $qqimg;
-}
-function female()
-{
-    $qq = '10002';//女QQ
-    $geturl = 'http://ptlogin2.qq.com/getface?&imgtype=1&uin=' . $qq;
-    $qquser = file_get_contents($geturl);
-    preg_match('/&k=.*&s=/', $qquser, $matches);
-    $k = $matches[0];
-    $qqimg = 'https://q1.qlogo.cn/g?b=qq&k=' . $k . '&s=100';
-    echo $qqimg;
-}
-//随机感谢语
-function txt()
-{
-    $filename = 'love.txt';        
-    $data = file_get_contents($filename);
-    $data = explode(PHP_EOL, $data);
-    $result = $data[array_rand($data)];
-    $result = str_replace(array("\r","\n","\r\n"), '', $result);
-    echo $result; 
-}
+    require('other/setting.php');
+	require('other/base.php');
 ?>
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>LOVE</title>
-    <link
-      type="image/vnd.microsoft.icon"
-      href="favicon.ico"
-      rel="shortcut icon"
-    />
-    <meta name="Description" content="爱情小屋" />
-    <link rel="stylesheet" href="app.css" type="text/css" />
-    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-  </head>
-  <body>
-    <div class="male Fade_In">
-      <img alt="avatar" src="<?php male(); ?>" class="male_img" />
+ <head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+  <meta name="viewport" content="width=device-width" /> 
+  <title>LOVE</title> 
+  <link type="image/vnd.microsoft.icon" href="favicon.ico" rel="shortcut icon" /> 
+  <meta name="Description" content="爱情小屋" /> 
+  <link rel="stylesheet" href="css/app.css" type="text/css" /> 
+  <script src="js/Valine.min.js"></script> 
+ </head> 
+ <body> 
+  <div class="main"> 
+   <div class="page page-1"> 
+    <div class="info"> 
+     <div class="center"> 
+      <div class="avatar"> 
+       <div class="man"> 
+        <img alt="avatar" src="<?php man(); ?>" class="man_img" /> 
+       </div> 
+       <div class="woman"> 
+        <img alt="avatar" src="<?php woman(); ?>" class="woman_img" /> 
+       </div> 
+      </div> 
+      <div class="clock"> 
+       <p>我们相恋了</p> 
+       <p id="love_clock"></p> 
+      </div> 
+      <div class="button"> 
+       <div class="blessing">
+         祝福:D 
+       </div> 
+       <div class="message" id="message">
+         留言 
+       </div> 
+      </div> 
+      <div class="festival"> 
+       <?php echo $festival; ?>
+       <span class="date_bg"> 
+        <?php echo $festival_time; ?></span> 
+      </div> 
+     </div> 
+     <div class="next"> 
+      <svg t="1624188824353" class="next-icon" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5227" width="35" height="35"> 
+       <path d="M508.767086 102.4c35.591314 0 67.7888 23.610514 76.244114 58.587429l166.560914 340.831085h0.526629l-0.277943 0.965486 0.277943 0.965486h-0.526629L585.0112 862.997943C576.555886 897.974857 544.343771 921.6 508.737829 921.6c-5.909943 0-11.907657-0.658286-17.92-2.018743-42.159543-9.567086-68.330057-50.336914-58.485029-91.136L589.999543 502.784 432.347429 195.525486c-9.845029-40.769829 16.325486-81.568914 58.485028-91.121372 5.997714-1.360457 12.024686-2.004114 17.934629-2.004114m0-58.514286c-10.357029 0-20.757943 1.155657-30.866286 3.452343-36.220343 8.206629-66.779429 29.871543-86.133029 61.015772a131.408457 131.408457 0 0 0-16.310857 100.893257c1.097143 4.5056 2.720914 8.850286 4.827429 12.990171l144.340114 281.2928-144.954514 299.402972a59.172571 59.172571 0 0 0-4.213029 11.776 131.4816 131.4816 0 0 0 16.296229 100.878628c19.324343 31.144229 49.898057 52.823771 86.162286 61.059657 10.108343 2.296686 20.48 3.466971 30.8224 3.466972 61.425371 0 114.570971-39.570286 131.437714-97.002057l161.440914-348.203886a58.368 58.368 0 0 0 8.9088-33.835886 58.9824 58.9824 0 0 0-8.689371-29.622857L640 140.214857C622.8992 83.1488 569.9584 43.885714 508.767086 43.885714z" fill="#fafafa" p-id="5228"></path> 
+       <path d="M653.794743 450.750171l-73.142857-146.285714a14.628571 14.628571 0 0 1 26.170514-13.092571l73.142857 146.285714a14.628571 14.628571 0 0 1-26.170514 13.092571z m-102.4-204.8l-14.628572-29.257142a14.628571 14.628571 0 0 1 26.170515-13.092572l14.628571 29.257143a14.628571 14.628571 0 0 1-26.170514 13.092571zM330.430171 458.24a58.514286 58.514286 0 1 1 0 117.028571 58.514286 58.514286 0 0 1 0-117.028571m0-58.514286c-64.526629 0-117.028571 52.501943-117.028571 117.028572s52.501943 117.028571 117.028571 117.028571 117.028571-52.501943 117.028572-117.028571-52.501943-117.028571-117.028572-117.028572z" fill="#f6f6f6" p-id="5229"></path> 
+      </svg> 
+     </div> 
+    </div> 
+   </div> 
+   <div class="page page-2"> 
+    <div class="want"> 
+     <h2>我们想……</h2> 
+     <ul class="list" id="list"> 
+      <?php echo love_list(); ?>
+     </ul> 
+    </div> 
+   </div> 
+  </div> 
+  <audio id="audio" src="other/music.m4a" controls="controls" autoplay loop hidden="true"></audio> 
+  <div class="loading"> 
+   <div class="loading-center"> 
+    <div class="star"> 
+     <svg class="star-icon" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+      <path d="M512 816.128L274.432 942.08c-19.968 10.752-44.544 3.072-55.296-16.896-4.096-8.192-5.632-17.408-4.096-26.112l46.592-264.704-193.024-186.88c-16.384-15.872-16.896-41.472-1.024-57.856 6.144-6.656 14.848-10.752 23.552-12.288l266.24-37.376 117.76-241.664c9.728-20.48 34.304-28.672 54.784-18.944a42.389 42.389 0 0 1 18.944 18.944l117.76 241.664 266.24 37.376c22.528 3.072 37.888 24.064 34.816 46.08-1.024 9.216-5.632 17.408-12.288 23.552l-193.536 186.88 46.592 264.704c4.096 22.528-10.752 43.52-33.28 47.616-9.216 1.536-18.432 0-26.112-4.096L512 816.128z" fill="#F8D67B" />
+      <path d="M255.488 985.6c-7.68 0-15.872-1.024-23.552-3.584-20.48-6.144-36.864-19.968-47.104-38.4-8.192-15.36-11.264-33.792-8.192-51.2l43.008-244.736L41.984 475.136c-15.36-14.848-24.064-34.304-24.064-55.808-.512-20.992 7.68-41.472 22.016-56.32 12.288-12.8 28.672-20.992 46.08-23.552l245.76-34.816L440.832 81.92c9.216-18.944 25.6-33.28 45.568-40.448 19.968-6.656 41.472-5.632 60.416 3.584a78.215 78.215 0 0 1 36.352 36.352L692.224 304.64l245.76 34.816c20.992 3.072 39.424 13.824 52.224 30.72 12.8 16.896 17.92 37.888 15.36 58.88-2.56 17.408-10.752 33.792-23.552 46.08L803.328 647.68l43.008 244.736c3.584 20.992-1.024 41.984-13.312 59.392s-30.208 29.184-51.2 32.768c-17.408 3.072-35.328 0-51.2-8.192L512 859.648 292.864 976.384c-11.776 6.144-24.576 9.216-37.376 9.216zM512 113.664c-1.024 0-2.048.512-2.048 1.536l-117.76 241.664c-5.632 11.264-16.384 19.456-29.184 20.992l-266.24 37.376c-.512 0-1.024.512-1.536.512 0 0-.512.512-.512 2.048 0 1.024.512 1.536 1.024 2.048L289.28 606.72c9.216 8.704 13.312 21.504 11.264 34.304l-46.592 264.704c0 .512 0 1.024.512 1.536 0 0 .512 1.024 1.536 1.024 1.024.512 1.536 0 2.048 0l237.568-125.952c11.264-6.144 24.576-6.144 35.84 0l237.568 125.952c.512.512 1.024.512 1.536.512s1.024 0 1.536-1.024.512-1.536.512-2.048l-46.592-264.704c-2.048-12.8 2.048-25.6 11.264-34.304l191.488-186.88c.512-.512.512-1.024.512-1.536s0-1.024-.512-2.048-1.536-1.024-1.536-1.024l-266.24-37.376c-12.8-1.536-23.552-9.728-29.184-20.992L514.048 115.2c0-.512-.512-1.024-1.024-1.024s-.512-.512-1.024-.512z" fill="#F8D67B" />
+     </svg> 
     </div>
-
-    <div class="content">
-      <div class="clock Fade_In">
-        <p>我们相恋了</p>
-        <p id="love_clock"></p>
-      </div>
-      <div class="blessing Fade_In" id="blessing">祝福:D</div>
-      <div class="message Fade_In" id="message">留言</div>
-    </div>
-
-    <div class="female Fade_In">
-      <img alt="avatar" src="<?php female(); ?>" class="female_img" />
-    </div>
-
-    <audio
-      id="audio"
-      src="music.m4a"
-      controls="controls"
-      autoplay
-      loop="true"
-      hidden="true"
-    ></audio>
-
-    <div id="loading">
-      <div id="loading-center">
-        <div class="chest">
-          <div class="heart left sided top"></div>
-          <div class="heart center"></div>
-          <div class="heart right sided"></div>
-        </div>
-      </div>
-    </div>
-  
-    <div id="message_content">
-      <div id="vcomments"></div>
-        </div> 
-        <div id="message_black"></div>
-
-    <script src="jquery.min.js"></script>
-    <script src="app.js"></script>
-  
-    <script>
-    //祝福按钮
-     $('body').on('click', '.blessing', function() {
-	    $.message("<?php txt(); ?>");
-     });
-    </script>
-
-  </body>
+   </div>
+  </div> 
+  <div id="message_content"> 
+   <div id="vcomments"></div> 
+  </div> 
+  <div id="message_black"></div> 
+  <script src="js/jquery.min.js"></script> 
+  <script src="js/app.js"></script>  
+ </body>
 </html>

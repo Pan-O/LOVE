@@ -37,14 +37,19 @@
 
 ## 使用方法
 下载源码后上传到服务器（需支持PHP）
+
 修改other目录下的setting.php文件，按提示即可
+
 修改js目录下的app.js文件，第3，191，192三行（ID和Key请参考[Valine-快速开始 ](https://valine.js.org/quickstart.html)中的 “获取APP ID 和 APP Key”
 
 
 祝福语自定义可修改other目录下的love.txt文件，一行一句
+
 恋爱清单自定义可修改other目录下的list.json文件
 
 
-*** 部分代码来源
+### 部分代码来源
+
 [JS简易整页滚动 - 云+社区 - 腾讯云](https://cloud.tencent.com/developer/article/1685617)
+
 [PHP开发计算下一个节假日时间并倒计时-不败君](https://www.bubaijun.com/page.php?id=148)
